@@ -24,4 +24,6 @@ public interface IClienteService {
 		
 		//Eliminar un registro
 		public void eliminar(Long id);
+		
+		public Cliente findOne(Long id);
 }

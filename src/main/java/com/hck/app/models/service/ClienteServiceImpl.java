@@ -50,4 +50,10 @@ public class ClienteServiceImpl implements IClienteService  {
 		return clienteDao.findAll(pagable) ;
 	}
 
+	@Override
+	public Cliente findOne(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
