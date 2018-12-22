@@ -21,7 +21,7 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
-import org.springframework.format.annotation.DateTimeFormat;
+
 
 @Entity
 @Table(name = "clientes")
@@ -46,7 +46,6 @@ public class Cliente implements Serializable {
 	@NotNull
 	@Column(name = "create_at")
 	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date createAt;
 	
 	@OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
