@@ -17,9 +17,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.example.app.models.entity.Cliente;
-import com.example.app.models.service.IClienteService;
-import com.example.app.util.paginator.PageRender;
+import com.hck.app.models.entity.Cliente;
+import com.hck.app.models.service.IClienteService;
+import com.hck.app.util.paginator.PageRender;
 
 @Controller
 public class ClienteController {
@@ -27,18 +27,18 @@ public class ClienteController {
 	@Autowired
 	private IClienteService clienteService;
 	
-	@RequestMapping(value="/listar" , method=RequestMethod.GET)
-	public String listar(@RequestParam(name="page", defaultValue="0") int page,  Model model) {
+	@RequestMapping(value="/index" , method=RequestMethod.GET)
+	public String index(@RequestParam(name="page", defaultValue="0") int page,  Model model) {
 		
 		Pageable pageRequest = new PageRequest(page, 4);
 
 		Page<Cliente> clientes = clienteService.findAll(pageRequest);
 		
-		PageRender<Cliente> pageRender = new PageRender<Cliente>("/listar", clientes);
+		PageRender<Cliente> pageRender = new PageRender<Cliente>("/index", clientes);
 		model.addAttribute("titulo", "Listado de clientes");
 		model.addAttribute("clientes", clientes);
 		model.addAttribute("page", pageRender);
-		return "listar";
+		return "index";
 	}
 	
 	//Procesando los datos del formulario
@@ -61,7 +61,7 @@ public class ClienteController {
 		
 		clienteService.save(cliente);
 		flash.addFlashAttribute("success", "Registro creado exitosamnete");
-		return "redirect:listar";
+		return "redirect:index";
 	}
 	
 	@RequestMapping(value="/form/{id}")
@@ -74,7 +74,7 @@ public class ClienteController {
 			cliente = clienteService.finOne(id);
 		}else {
 			flash.addFlashAttribute("error", "Error al editar el registro");
-			return "redirect:listar";
+			return "redirect:index";
 		}
 		
 		model.put("cliente", cliente);
@@ -82,14 +82,14 @@ public class ClienteController {
 		return "form";
 	}
 	
-	@RequestMapping(value="/listar/{id}")
+	@RequestMapping(value="/index/{id}")
 	public String eliminar(@PathVariable(value="id") Long id) {
 		
 		if(id > 0) {
 			clienteService.eliminar(id);
 		}
 
-		return "redirect:/listar";
+		return "redirect:/index";
 	}
 	
 }
