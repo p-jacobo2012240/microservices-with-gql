@@ -14,6 +14,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+//import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -23,6 +24,7 @@ import com.hck.app.models.service.IClienteService;
 import com.hck.app.util.paginator.PageRender;
 
 @Controller
+//@SessionAttributes("cliente")
 public class ClienteController {
 	
 	@Autowired
@@ -43,18 +45,18 @@ public class ClienteController {
 	}
 	
 	
-	@GetMapping(value = "/detalle-cliente/{id}")
-	public String ver(@PathVariable(value = "id") Long id, Map<String, Object> model, RedirectAttributes flash) {
+	@GetMapping(value = "/detalle/{id}")
+	public String detalle(@PathVariable(value = "id") Long id, Map<String, Object> model, RedirectAttributes flash) {
 
 		Cliente cliente = clienteService.findOne(id);
-		if (cliente == null) {
+		if (cliente != null) {
 			flash.addFlashAttribute("error", "El cliente no existe en la base de datos");
-			return "redirect:/listar";
+			return "redirect:/index";
 		}
 
 		model.put("cliente", cliente);
-		model.put("titulo", "Detalle cliente: " + cliente.getNombre());
-		return "ver";
+		//model.put("titulo", "Detalle cliente: " + cliente.getNombre() );
+		return "detalle";
 	}
 	
 	
@@ -88,7 +90,7 @@ public class ClienteController {
 		
 		if(id > 0) {
 			flash.addFlashAttribute("info", "Registro editado correctamente");
-			cliente = clienteService.finOne(id);
+			cliente = clienteService.findById(id);
 		}else {
 			flash.addFlashAttribute("error", "Error al editar el registro");
 			return "redirect:index";

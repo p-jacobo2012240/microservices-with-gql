@@ -20,7 +20,7 @@ public interface IClienteService {
 		public void save(Cliente cliente);
 		
 		//Editar un registro
-		public Cliente finOne(Long id);
+		public Cliente findById(Long id);
 		
 		//Eliminar un registro
 		public void eliminar(Long id);
