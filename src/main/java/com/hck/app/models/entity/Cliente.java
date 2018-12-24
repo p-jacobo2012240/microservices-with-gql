@@ -1,6 +1,5 @@
 package com.hck.app.models.entity;
 
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -21,7 +20,7 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
-
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "clientes")
@@ -46,6 +45,7 @@ public class Cliente implements Serializable {
 	@NotNull
 	@Column(name = "create_at")
 	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date createAt;
 	
 	@OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
@@ -55,7 +55,7 @@ public class Cliente implements Serializable {
 		facturas = new ArrayList<Factura>();
 	}
 
-	
+	private String foto;
 	
 	public Long getId() {
 		return id;
@@ -95,6 +95,14 @@ public class Cliente implements Serializable {
 
 	public void setCreateAt(Date createAt) {
 		this.createAt = createAt;
+	}
+
+	public String getFoto() {
+		return foto;
+	}
+
+	public void setFoto(String foto) {
+		this.foto = foto;
 	}
 
 	public List<Factura> getFacturas() {

@@ -8,22 +8,15 @@ import org.springframework.data.domain.Pageable;
 import com.hck.app.models.entity.Cliente;
 
 public interface IClienteService {
+
+	public List<Cliente> findAll();
 	
-		//Listar los registros
-		public List<Cliente> findAll();
-		
-		//Paginando los resultados
-		public Page<Cliente> findAll(Pageable pagable  );
-		
-		
-		//Guardar un registo
-		public void save(Cliente cliente);
-		
-		//Editar un registro
-		public Cliente findById(Long id);
-		
-		//Eliminar un registro
-		public void eliminar(Long id);
-		
-		public Cliente findOne(Long id);
+	public Page<Cliente> findAll(Pageable pageable);
+
+	public void save(Cliente cliente);
+	
+	public Cliente findOne(Long id);
+	
+	public void delete(Long id);
+
 }
