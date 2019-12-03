@@ -12,7 +12,7 @@
 	<artifactId>api-crm</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>api-crm</name>
-	<description>Demo project for Spring Boot</description>
+	<description>api.gt</description>
 
 	<properties>
 		<java.version>1.8</java.version>
@@ -43,12 +43,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
-			<exclusions>
-				<exclusion>
-					<groupId>org.junit.vintage</groupId>
-					<artifactId>junit-vintage-engine</artifactId>
-				</exclusion>
-			</exclusions>
 		</dependency>
 	</dependencies>
 
