@@ -7,6 +7,7 @@ import java.util.Map;
 import org.hackobo.api.dao.OrderRepository;
 import org.hackobo.api.entity.Order;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,8 +31,20 @@ public class OrderController {
 	}
 	
 	@GetMapping("/order/{id}")
-	public Order findByIdOrder(@PathVariable Long id ) {
-		return this.orderDao.findById(id).orElse(null);
+	public ResponseEntity<?> findByIdOrder(@PathVariable Long id ) {
+		Order order = null;
+		if( id == null ||  id < 0 ) {
+			this.res.put("message", "invalid parameter!");
+			return new ResponseEntity<Map<String, Object>>(this.res, HttpStatus.CONFLICT);
+		}
+		
+		try {
+			order = orderDao.findById(id).orElse(null);
+		}catch(DataAccessException e) {
+			this.res.put("message", "has error" + e.getMostSpecificCause());
+			return new ResponseEntity<Map<String, Object>>(res, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		return new ResponseEntity<Order>(order, HttpStatus.OK);
 	}
 	
 	

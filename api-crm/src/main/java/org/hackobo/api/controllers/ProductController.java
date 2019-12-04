@@ -26,8 +26,7 @@ public class ProductController {
 	@Autowired
 	private ProductRepository productDao;
 	private Map<String, Object> res = new HashMap();
-	
-	
+
 	@GetMapping("/products")
 	public ResponseEntity<List<Product>> findAllProducts() {
 		List<Product> products = (List<Product>) productDao.findAll();
@@ -40,7 +39,7 @@ public class ProductController {
 	@GetMapping("/product/{id}")
 	public ResponseEntity<?> findByIdProduct(@PathVariable Long id) {
 		Product product = null;
-		
+
 		try {
 			product = productDao.findById(id).orElse(null);
 		} catch (DataAccessException e) {
@@ -58,27 +57,27 @@ public class ProductController {
 	@PostMapping("/product")
 	public ResponseEntity<Product> saveProduct(@RequestBody Product product) {
 		Product newProduct = null;
-		
+
 		try {
 			newProduct = productDao.save(product);
-		}catch(DataAccessException e) {
+		} catch (DataAccessException e) {
 			this.res.put("body", product);
 			this.res.put("message", "has error" + e.getMostSpecificCause());
 			return new ResponseEntity<Product>(product, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		return new ResponseEntity<Product>(newProduct, HttpStatus.CREATED );
+		return new ResponseEntity<Product>(newProduct, HttpStatus.CREATED);
 	}
-	
+
 	@DeleteMapping("/product/{id}")
-	public ResponseEntity<Map<String, Object>> removeByIdProduct(@PathVariable Long id){
+	public ResponseEntity<Map<String, Object>> removeByIdProduct(@PathVariable Long id) {
 		try {
 			productDao.deleteById(id);
-		}catch(DataAccessException e) {
+		} catch (DataAccessException e) {
 			this.res.put("message", "has error" + e.getMostSpecificCause());
-			return new ResponseEntity<Map<String, Object >>(res, HttpStatus.INTERNAL_SERVER_ERROR);
+			return new ResponseEntity<Map<String, Object>>(res, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		this.res.put("message", "product deleted");
-		return new ResponseEntity<Map<String, Object>>(this.res, HttpStatus.OK );
+		return new ResponseEntity<Map<String, Object>>(this.res, HttpStatus.OK);
 	}
 
 }
