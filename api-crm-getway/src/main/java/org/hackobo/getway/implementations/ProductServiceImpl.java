@@ -12,14 +12,16 @@ import org.springframework.web.client.RestTemplate;
 
 @Service
 public class ProductServiceImpl implements ProductService {
-
+	
+	private static final String API_CRM = "http://localhost:8001/api/v1";
+	
 	@Autowired
 	private RestTemplate restClient;
 	
 	@Override
 	public List<Product> listAllProduct() {
 		List<Object> products = Arrays.asList( 
-			restClient.getForObject("http://localhost:8001/api/v1/products", Product[].class));
+			restClient.getForObject(API_CRM.concat("/products"), Product[].class));
 		//use streams
 		return products.stream()
 				.map(p -> new Product( )) //verify constructors app
