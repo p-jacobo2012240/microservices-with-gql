@@ -7,6 +7,12 @@ import org.hackobo.getway.entity.Product;
 
 public interface ProductService {
 	
+	//get
 	public List<Product> listAllProduct();
 	
+	//post
+	
+	//put
+	
+	//delete
 }
