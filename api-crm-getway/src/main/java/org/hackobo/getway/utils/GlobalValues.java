@@ -10,6 +10,9 @@ public class GlobalValues {
 		return instance;
 	}
 	
+	//geneal values
+	private static final String API_CRM = "http://localhost:8001/api/v1";
+	
 	
 	
 }
