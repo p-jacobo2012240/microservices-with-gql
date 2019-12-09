@@ -2,12 +2,12 @@ package org.hackobo.getway.service;
 
 import java.util.List;
 
-import org.hackobo.getway.entity.Order;
+import org.hackobo.getway.entity.Product;
 
 public interface OrderService {
 	
 	//get
-	public List<Order> listAllOrder();
+	public List<Product> listAllOrder();
 	
 	//post
 	
