@@ -20,12 +20,11 @@ public class OrderServiceImpl implements OrderService {
 	
 	
 	@Override
-	public List<Order> listAllOrder() {
-		List<Object> productList = 
-				Arrays.asList(restClient
-				.getForObject(API_CRM_v2
-				.concat("/products"),  Product[].class));
-		System.out.println("itssss :::::::::::::::::::::::::" + productList );	
+	public List<Product> listAllOrder() {
+		//List<Product> productList = this.restClient.getForObject(API_CRM_v2.concat("/products"), responseType) 
+				
+		//System.out.println("itssss :::::::::::::::::::::::::" + productList );	
+		
 		
 		return null;
 	}

@@ -17,9 +17,9 @@ public class ApiGetWay {
 	@Autowired
 	private OrderServiceImpl orderService;
 	
-	@GetMapping("/products")
+	/*@GetMapping("/products")
 	public List<Order> allProductsAPI(){
 		return this.orderService.listAllOrder();
-	}
+	}*/
 	
 }
