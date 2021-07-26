@@ -1,4 +1,4 @@
-package com.hackobo.client.entities;
+package com.hackobo.entities;
 
 import lombok.Data;
 

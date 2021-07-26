@@ -1,7 +1,7 @@
-package com.hackobo.client.controllers;
+package com.hackobo.controllers;
 
-import com.hackobo.client.entities.Client;
-import com.hackobo.client.repository.ClientRepository;
+import com.hackobo.entities.Client;
+import com.hackobo.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

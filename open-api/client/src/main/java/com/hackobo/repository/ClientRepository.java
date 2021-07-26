@@ -1,6 +1,6 @@
-package com.hackobo.client.repository;
+package com.hackobo.repository;
 
-import com.hackobo.client.entities.Client;
+import com.hackobo.entities.Client;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ClientRepository extends JpaRepository<Client, Long> {

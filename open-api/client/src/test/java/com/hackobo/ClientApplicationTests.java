@@ -1,4 +1,4 @@
-package com.hackobo.client;
+package com.hackobo;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

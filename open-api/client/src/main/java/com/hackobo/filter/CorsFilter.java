@@ -1,4 +1,4 @@
-package com.hackobo.client.filter;
+package com.hackobo.filter;
 
 import javax.servlet.*;
 import javax.servlet.annotation.*;
